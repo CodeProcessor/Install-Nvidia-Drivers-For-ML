@@ -19,6 +19,6 @@ Run the script provided in the pytorch folder.
 ```bash
 python3 pytorch_verify.py
 ```
-If successful, you should see the following output:
+If successful, you should see something similar to the following output:
 
 ![](../assets/pytorch-verify.png)
