@@ -2,7 +2,7 @@
 
 ## Remove exising installations of nvidia and cuda
 
-```angular2html
+```bash
 sudo apt-get remove --purge '^nvidia-.*'
 sudo apt-get remove --purge '^libnvidia-.*'
 sudo apt-get remove --purge '^cuda-.*'
@@ -11,34 +11,34 @@ sudo apt-get remove --purge '^cuda-.*'
 ## Install Nvidia-Drivers
 
 Check available drivers:
-```angular2html
+```bash
 sudo apt search nvidia-driver
 ```
-This will list down all the available drivers.
+This will list down all the available drivers.\
 Select a driver version and install it.
-```angular2html
+```bash
 sudo apt-get install nvidia-driver-470
 ```
 or go to this location and download - https://www.nvidia.com/Download/index.aspx?lang=en-us
 
 
 Now reboot and then check the driver version:
-```angular2html
+```bash
 nvidia-smi
 ```
-This will show all the information with the installed driver.
+This will show all the information with the installed driver.\
 The upper right corner cuda version is the maximum cuda version supported by the driver.
 ![](assets/nvidia-smi.png)
 
 ## Install CUDA
 
-Goto - https://developer.nvidia.com/cuda-toolkit-archive
-Download the latest version of cuda toolkit which supported by the driver.
+Goto - https://developer.nvidia.com/cuda-toolkit-archive \
+Download the latest version of cuda toolkit which supported by the driver.\
 Select the target platform and then it will show the commandline instructions.
 ![](assets/target-platform.png)
 
 example for ubuntu 20.04 cuda 11.4
-```angular2html
+```bash
 wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/cuda-ubuntu2004.pin
 sudo mv cuda-ubuntu2004.pin /etc/apt/preferences.d/cuda-repository-pin-600
 wget https://developer.download.nvidia.com/compute/cuda/11.4.0/local_installers/cuda-repo-ubuntu2004-11-4-local_11.4.0-470.42.01-1_amd64.deb
@@ -50,7 +50,7 @@ sudo apt-get -y install cuda
 
 ## Install cuDNN
  
-Go to - https://developer.nvidia.com/cudnn
+Go to - https://developer.nvidia.com/cudnn \
 You need an nvidia developer account to download the cudnn package.
 
 Go to the download page and check the supported cnDNN version for installed cuda version.
@@ -59,12 +59,12 @@ If it's not here go to [Archived cuDNN Releases](https://developer.nvidia.com/rd
 
 Unzip downloaded tar file
 
-```angular2html
+```bash
 tar -xvf cudnn-linux-x86_64-8.x.x.x_cudaX.Y-archive.tar.xz
 ```
 
 Copy the following files into the CUDA toolkit directory.
-```angular2html
+```bash
 sudo cp cudnn-*-archive/include/cudnn*.h /usr/local/cuda/include 
 sudo cp -P cudnn-*-archive/lib/libcudnn* /usr/local/cuda/lib64 
 sudo chmod a+r /usr/local/cuda/include/cudnn*.h /usr/local/cuda/lib64/libcudnn*
@@ -72,19 +72,24 @@ sudo chmod a+r /usr/local/cuda/include/cudnn*.h /usr/local/cuda/lib64/libcudnn*
 More information - https://docs.nvidia.com/deeplearning/cudnn/install-guide/index.html#installlinux-tar
 
 restart and check the cudnn version
-```angular2html
+```bash
 nvcc -V
 ```
 ![](assets/nvcc.png)
 
 If you see something like this:
-```angular2html
+```bash
 Command 'nvcc' not found, but can be installed with:
 
 sudo apt install nvidia-cuda-toolkit
 ```
 
 Go and install nvidia-cuda-toolkit
-```angular2html
+```bash
 sudo apt install nvidia-cuda-toolkit
 ```
+
+## Install Deep Learning Frameworks
+
+[Pytorch](https://github.com/CodeProcessor/Install-Nvidia-Drivers-For-ML/tree/main/pytorch)
+
